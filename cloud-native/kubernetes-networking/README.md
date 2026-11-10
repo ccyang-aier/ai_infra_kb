@@ -14,4 +14,4 @@
 8. [网络排障、性能与生产设计](08-network-troubleshooting-and-design.md)
 9. [AI Infra 网络专题](09-ai-infra-networking.md)
 
-前两篇已完成，其余文章待逐篇编写。
+建议从第一篇开始顺序阅读：前两篇建立通信场景和网络基础，第三至第七篇沿着节点内部、跨节点、服务发现和集群入口逐层展开，最后两篇讨论排障与 AI Infra 工作负载。

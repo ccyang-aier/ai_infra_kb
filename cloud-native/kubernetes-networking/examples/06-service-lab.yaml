@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: knowledge
+  namespace: kb-network-lab
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: knowledge
+  template:
+    metadata:
+      labels:
+        app: knowledge
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.27.5
+          ports:
+            - name: http
+              containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: knowledge
+  namespace: kb-network-lab
+spec:
+  selector:
+    app: knowledge
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client
+  namespace: kb-network-lab
+spec:
+  containers:
+    - name: curl
+      image: curlimages/curl:8.10.1
+      command: ["sleep", "3600"]
